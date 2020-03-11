@@ -1,31 +1,48 @@
 import React, { Component } from "react";
+import CounterButton from "./CounterButton";
 import "./Counter.css";
 
 class Counter extends Component {
-  //define the initial state in a constructor
   constructor() {
     super();
     this.state = {
       counter: 0
     };
-    this.increment = this.increment.bind(this);
+    this.increment = this.increment.bind(this); //we do not need to bind anymore when we use arrow functions for render method and increment method
+    this.reset = this.reset.bind(this);
   }
 
   render() {
+    /*pay attention to the method reference passing through the incrementMethod attribute*/
     return (
       <div className="counter">
-        <button onClick={this.increment}>+1</button>
+        <CounterButton incrementMethod={this.increment} />
+        <CounterButton by={5} incrementMethod={this.increment} />
+        <CounterButton by={10} incrementMethod={this.increment} />
+        <CounterButton by={-5} incrementMethod={this.increment} />
+
         <span className="count">{this.state.counter}</span>
+        <div>
+          <button className="reset" onClick={this.reset}>
+            Reset
+          </button>
+        </div>
       </div>
     );
   }
 
-  increment() {
+  increment(by) {
     //update state ->  counter++
-    this.setState({
-      counter: this.state.counter + 1
+    this.setState(prevState => {
+      return { counter: prevState.counter + by };
     });
-    //console.log("increment");
+  }
+
+  //we do not neeed the previous state here
+  reset() {
+    this.setState({
+      counter: 0
+    });
   }
 }
 

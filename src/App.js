@@ -3,20 +3,20 @@ import React, { Component } from "react";
 // import SecondComponent from "./components/learning-examples/SecondComponent";
 // import ThirdComponent from "./components/learning-examples/ThirdComponent";
 // import FourthComponent from "./components/learning-examples/FourthComponent";
-import Counter from "./components/counter/Counter";
-import "./App.css";
 
+// import Counter from "./components/counter/Counter";
+import TodoApp from "./components/todo/TodoApp";
+import "./App.css";
+//class component
 class App extends Component {
-    //class component
-    render() {
-        return ( <
-            div className = "App" >
-            <
-            Counter / >
-            <
-            /div>
-        );
-    }
+  render() {
+    return (
+      <div className="App">
+        {/* <Counter /> */}
+        <TodoApp />
+      </div>
+    );
+  }
 }
 
 export default App;
